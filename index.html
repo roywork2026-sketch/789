@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2b1658">
+<title>789 · Newcomer Guide: Starting Life in the UK</title>
+<style>
+:root{--bg:#f4f0fa;--card:#fff;--text:#0b0c0c;--muted:#505a5f;--blue:#5a2d91;--onblue:#fff;--line:#b1b4b6;--lock:#fff7e0;--lockline:#8a5a00;--hero:#e3f4fc;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#120d1f;--card:#1d1630;--text:#f3f2f1;--muted:#b1b4b6;--blue:#b79cf2;--onblue:#1a0f33;--line:#4a3f66;--lock:#2b2210;--lockline:#e0a030;--hero:#241a3d;color-scheme:dark}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Tahoma,sans-serif}
+.top{background:#2b1658;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:8px solid #8fd3f4}
+.top b{font-size:1.25rem}
+.phase{background:var(--card);border-bottom:1px solid var(--line);padding:8px 16px;font-size:.9rem}
+.phase span{background:var(--blue);color:var(--onblue);font-weight:700;padding:2px 8px;margin-inline-end:8px;font-size:.75rem}
+main{max-width:760px;margin:0 auto;padding:16px 16px 40px}
+.hero{background:var(--hero);border:1px solid var(--line);border-inline-start:8px solid var(--blue);padding:16px;margin-bottom:16px}
+.hero h1{margin:0 0 4px;font-size:1.7rem;line-height:1.25}
+.hero p{margin:0;color:var(--muted)}
+.langs{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.langs button{min-height:44px;border:2px solid var(--blue);background:var(--card);color:var(--blue);padding:6px 14px;font:inherit;cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--blue);color:var(--onblue)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.tile{display:flex;align-items:center;gap:12px;min-height:76px;padding:14px;background:var(--card);border:1px solid var(--line);border-inline-start:6px solid var(--blue);color:var(--text);text-decoration:none;font-weight:700;font-size:1.05rem}
+.tile span{font-size:1.6rem}
+.back{display:inline-block;min-height:44px;padding:8px 0;color:var(--blue);font-weight:700;text-decoration:underline}
+h2.vt{margin:4px 0 12px;font-size:1.4rem}
+.card{background:var(--card);border-top:3px solid #8fd3f4;border:1px solid var(--line);border-inline-start:6px solid var(--blue);padding:14px;margin-bottom:12px}
+.card h2{margin:0 0 6px;font-size:1.1rem}
+.card p{margin:0 0 6px}
+.card.prem{background:var(--lock);border-inline-start-color:var(--lockline)}
+.badge{display:inline-block;font-size:.75rem;font-weight:700;padding:2px 10px;margin-bottom:6px;background:var(--blue);color:var(--onblue)}
+button.act,.card button,.call{min-height:48px;border:0;background:var(--blue);color:var(--onblue);padding:8px 18px;font:inherit;font-weight:700;cursor:pointer;display:inline-block;text-decoration:none;margin-top:8px;margin-inline-end:8px}
+.card.open button.unl{background:var(--line);color:var(--text);cursor:default}
+a.ext{color:var(--blue);font-weight:700}
+input[type=file]{display:block;margin:8px 0;max-width:100%}
+.out{white-space:pre-wrap;margin-top:10px}
+.np{font-size:.9rem;color:var(--muted)}
+.scan{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #fd0;outline-offset:2px}
+footer{font-size:.85rem;color:var(--muted);margin-top:20px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><svg width="40" height="40" viewBox="0 0 48 48" role="img" aria-label="789"><rect width="48" height="48" rx="10" fill="#5a2d91"/><text x="24" y="31" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="19" fill="#fff">789</text><circle cx="41" cy="7" r="4" fill="#8fd3f4"/></svg><b>789</b><span style="opacity:.85">Newcomer Guide</span></header>
+<div class="phase"><span>BETA</span><i id="ban"></i></div>
+<main>
+<div class="hero"><h1 id="title"></h1><p id="tag"></p><div class="langs" id="langs"></div></div>
+<div id="view"></div>
+<footer id="foot"></footer>
+</main>
+<script>
+var L={
+en:{n:"English",d:"ltr",title:"Starting life in the UK",tag:"A simple guide for people who are new here",free:"Free",prem:"Premium",
+f:[["Emergencies","Call 999 for police, fire or ambulance. For non-emergency health advice, call 111."],
+["Healthcare","Register with a local GP. A practice should not refuse you because you lack ID, proof of address or immigration status."],
+["Your rights","If officials approach you, stay calm, ask who they are, and ask to speak to a legal adviser. Free legal help may be available."],
+["Watch out for scams","Only pay regulated advisers. Check registration with the OISC on gov.uk. Nobody can guarantee a visa."],
+["Housing","If you are homeless or about to be, contact your local council’s housing team straight away. Charities such as Shelter give free advice."],
+["Banking and money","Ask for a basic bank account. Banks may ask for ID and proof of address. Never share your PIN or send money to someone you do not know."],
+["Work","Your right to work depends on your status. Be careful if anyone asks you to pay to get a job. Acas gives free advice on pay and work rights."],
+["Free help and English classes","Citizens Advice gives free advice. Ask your local college or council about low-cost English (ESOL) classes."]],
+p:[["Offline pack","The full guide as a downloadable PDF in every language."],
+["Checklists and reminders","First-month and first-year task lists with deadline reminders."],
+["Letter helper","Official letters explained in your language."],
+["Printable templates","For example a GP registration request or a bank account letter."]],
+lt:["Take or choose a photo of your letter first.", "Explain this letter", "Reading your letter. This can take a few seconds…", "This app does not store your photo, but it is processed by an AI provider to explain it. Never share your letter with anyone who offers to fix your case for money. This is general information, not legal advice.", "Sorry, something went wrong. Please try again."],ban:"Independent guide. Not an official government website.",unlock:"Unlock (demo)",open:"Unlocked",note:"This is a demo. It takes no real payments.",
+foot:"General information only, not legal advice. Check current details on GOV.UK. Translations should be reviewed by native speakers before anyone relies on them."},
+ar:{n:"العربية",d:"rtl",title:"بداية الحياة في المملكة المتحدة",tag:"دليل بسيط للقادمين الجدد",free:"مجاني",prem:"مميز",
+f:[["الطوارئ","اتصل بالرقم 999 للشرطة أو الإطفاء أو الإسعاف. للحصول على نصيحة صحية غير عاجلة اتصل بالرقم 111."],
+["الرعاية الصحية","سجّل لدى طبيب عام (GP) قريب منك. لا ينبغي للعيادة أن ترفض تسجيلك بسبب عدم وجود إثبات هوية أو عنوان أو وضع هجرة."],
+["حقوقك","إذا اقترب منك مسؤولون، ابقَ هادئاً واسأل عن هويتهم واطلب التحدث إلى مستشار قانوني. قد تتوفر مساعدة قانونية مجانية."],
+["احذر من الاحتيال","ادفع فقط لمستشارين مسجّلين. تحقق من تسجيل المستشار لدى OISC عبر موقع gov.uk. لا أحد يستطيع ضمان تأشيرة."],
+["السكن","إذا كنت بلا مأوى أو على وشك ذلك، تواصل فوراً مع قسم الإسكان في مجلسك المحلي. تقدم جمعيات مثل Shelter نصائح مجانية."],
+["المصارف والمال","اطلب حساباً مصرفياً أساسياً. قد يطلب المصرف إثبات هوية وعنوان. لا تشارك رقمك السري ولا ترسل مالاً لشخص لا تعرفه."],
+["العمل","يعتمد حقك في العمل على وضعك. احذر إذا طلب منك أحد دفع مال للحصول على وظيفة. تقدم Acas نصائح مجانية حول الأجور وحقوق العمل."],
+["مساعدة مجانية ودروس اللغة","تقدم Citizens Advice نصائح مجانية. اسأل كليتك أو مجلسك المحلي عن دروس اللغة الإنجليزية (ESOL) منخفضة التكلفة."]],
+p:[["الحزمة دون اتصال","الدليل الكامل بصيغة PDF للتحميل بكل لغة."],
+["قوائم المهام والتذكيرات","قوائم للشهر الأول والسنة الأولى مع تذكيرات بالمواعيد."],
+["مساعد الرسائل","شرح الرسائل الرسمية بلغتك."],
+["نماذج جاهزة للطباعة","مثل طلب التسجيل لدى الطبيب أو فتح حساب مصرفي."]],
+lt:["التقط صورة لرسالتك أو اخترها أولاً.", "اشرح هذه الرسالة", "جارٍ قراءة رسالتك. قد يستغرق ذلك بضع ثوانٍ…", "لا يحفظ هذا التطبيق صورتك، لكن مزوّد ذكاء اصطناعي يعالجها لشرحها. لا تشارك رسالتك مع من يعرض «إصلاح قضيتك» مقابل المال. هذه معلومات عامة وليست نصيحة قانونية.", "عذراً، حدث خطأ. حاول مرة أخرى."],ban:"دليل مستقل. ليس موقعاً حكومياً رسمياً.",unlock:"افتح (تجريبي)",open:"مفتوح",note:"هذه نسخة تجريبية ولا تقبل مدفوعات حقيقية.",
+foot:"معلومات عامة وليست نصيحة قانونية. تحقق من التفاصيل الحالية على GOV.UK. يجب أن يراجع متحدثون أصليون الترجمة قبل الاعتماد عليها."},
+uk:{n:"Українська",d:"ltr",title:"Початок життя у Великій Британії",tag:"Простий путівник для новоприбулих",free:"Безкоштовно",prem:"Преміум",
+f:[["Екстрені ситуації","Телефонуйте 999: поліція, пожежна служба, швидка. Для медичної поради без екстреності телефонуйте 111."],
+["Охорона здоров’я","Зареєструйтеся в місцевого сімейного лікаря (GP). Практика не повинна відмовляти через відсутність документів, підтвердження адреси чи імміграційного статусу."],
+["Ваші права","Якщо до вас підійшли посадовці, зберігайте спокій, запитайте, хто вони, і попросіть поговорити з юристом. Може бути доступна безкоштовна правова допомога."],
+["Остерігайтеся шахраїв","Платіть лише зареєстрованим консультантам. Перевірте реєстрацію в OISC на gov.uk. Ніхто не може гарантувати візу."],
+["Житло","Якщо ви бездомні або ось-ось ними станете, одразу зверніться до житлового відділу місцевої ради. Благодійні організації, як-от Shelter, дають безкоштовні поради."],
+["Банк і гроші","Попросіть базовий банківський рахунок. Банк може вимагати документ і підтвердження адреси. Нікому не повідомляйте PIN-код і не надсилайте гроші незнайомцям."],
+["Робота","Право на роботу залежить від вашого статусу. Остерігайтеся, якщо хтось просить гроші за роботу. Acas дає безкоштовні поради щодо оплати й трудових прав."],
+["Безкоштовна допомога та англійська","Citizens Advice дає безкоштовні поради. Запитайте в місцевому коледжі чи раді про недорогі курси англійської (ESOL)."]],
+p:[["Офлайн-пакет","Повний путівник у PDF кожною мовою."],
+["Списки справ і нагадування","Списки на перший місяць і рік, нагадування про терміни."],
+["Помічник з листами","Пояснення офіційних листів вашою мовою."],
+["Шаблони для друку","Наприклад, заява на реєстрацію в лікаря чи відкриття рахунку."]],
+lt:["Спершу сфотографуйте лист або виберіть фото.", "Пояснити цей лист", "Читаємо ваш лист. Це може тривати кілька секунд…", "Цей застосунок не зберігає ваше фото, але постачальник ШІ обробляє його, щоб пояснити. Не показуйте лист тим, хто пропонує «вирішити вашу справу» за гроші. Це загальна інформація, а не юридична порада.", "Вибачте, сталася помилка. Спробуйте ще раз."],ban:"Незалежний путівник. Не є офіційним урядовим сайтом.",unlock:"Відкрити (демо)",open:"Відкрито",note:"Це демоверсія. Реальні платежі не приймаються.",
+foot:"Загальна інформація, не юридична порада. Актуальні деталі перевіряйте на GOV.UK. Носії мови мають перевірити переклад, перш ніж на нього покладатися."},
+es:{n:"Español",d:"ltr",title:"Empezar una vida en el Reino Unido",tag:"Una guía sencilla para recién llegados",free:"Gratis",prem:"Premium",
+f:[["Emergencias","Llame al 999 para policía, bomberos o ambulancia. Para consejo médico no urgente, llame al 111."],
+["Salud","Regístrese en un médico de cabecera (GP) cercano. La consulta no debería rechazarle por no tener identificación, comprobante de domicilio o estatus migratorio."],
+["Sus derechos","Si se le acercan funcionarios, mantenga la calma, pregunte quiénes son y pida hablar con un asesor legal. Puede haber asistencia jurídica gratuita."],
+["Cuidado con las estafas","Pague solo a asesores registrados. Compruebe el registro en la OISC en gov.uk. Nadie puede garantizar un visado."],
+["Vivienda","Si no tiene hogar o está a punto de perderlo, contacte de inmediato con el departamento de vivienda de su ayuntamiento. Organizaciones como Shelter ofrecen asesoramiento gratuito."],
+["Banco y dinero","Pida una cuenta bancaria básica. El banco puede pedir identificación y comprobante de domicilio. Nunca comparta su PIN ni envíe dinero a desconocidos."],
+["Trabajo","Su derecho a trabajar depende de su situación. Tenga cuidado si le piden dinero por un empleo. Acas ofrece asesoramiento gratuito sobre salarios y derechos laborales."],
+["Ayuda gratuita e inglés","Citizens Advice ofrece asesoramiento gratuito. Pregunte en su colegio universitario o ayuntamiento por clases de inglés (ESOL) económicas."]],
+p:[["Paquete sin conexión","La guía completa en PDF descargable en cada idioma."],
+["Listas y recordatorios","Listas para el primer mes y el primer año, con avisos de plazos."],
+["Asistente de cartas","Explicación de cartas oficiales en su idioma."],
+["Plantillas imprimibles","Por ejemplo, solicitud de registro médico o de cuenta bancaria."]],
+lt:["Primero haga o elija una foto de su carta.", "Explicar esta carta", "Leyendo su carta. Puede tardar unos segundos…", "Esta aplicación no guarda su foto, pero un proveedor de IA la procesa para explicarla. No comparta su carta con quien ofrezca «arreglar su caso» a cambio de dinero. Es información general, no asesoramiento legal.", "Lo sentimos, algo salió mal. Inténtelo de nuevo."],ban:"Guía independiente. No es un sitio web oficial del gobierno.",unlock:"Desbloquear (demo)",open:"Desbloqueado",note:"Es una demo y no acepta pagos reales.",
+foot:"Información general, no asesoramiento legal. Confirme los detalles actuales en GOV.UK. Hablantes nativos deben revisar la traducción antes de confiar en ella."},
+fa:{n:"فارسی",d:"rtl",title:"شروع زندگی در بریتانیا",tag:"راهنمایی ساده برای تازه‌واردان",free:"رایگان",prem:"ویژه",
+f:[["شرایط اضطراری","برای پلیس، آتش‌نشانی یا آمبولانس با ۹۹۹ تماس بگیرید. برای مشاورهٔ پزشکی غیراضطراری با ۱۱۱ تماس بگیرید."],
+["سلامت","در یک پزشک عمومی (GP) نزدیک خود ثبت‌نام کنید. مطب نباید به دلیل نداشتن مدرک شناسایی، اثبات نشانی یا وضعیت مهاجرتی ثبت‌نام شما را رد کند."],
+["حقوق شما","اگر مأموران به شما نزدیک شدند، آرام بمانید، بپرسید چه کسانی هستند و بخواهید با مشاور حقوقی صحبت کنید. ممکن است کمک حقوقی رایگان در دسترس باشد."],
+["مراقب کلاهبرداری باشید","فقط به مشاوران ثبت‌شده پول بدهید. ثبت مشاور را در OISC از طریق gov.uk بررسی کنید. هیچ‌کس نمی‌تواند ویزا را تضمین کند."],
+["مسکن","اگر بی‌خانمان هستید یا در آستانهٔ آن قرار دارید، فوراً با بخش مسکن شورای محلی خود تماس بگیرید. نهادهایی مانند Shelter مشاورهٔ رایگان می‌دهند."],
+["بانک و پول","یک حساب بانکی پایه درخواست کنید. بانک ممکن است مدرک شناسایی و اثبات نشانی بخواهد. رمز خود را به کسی ندهید و به افراد ناشناس پول نفرستید."],
+["کار","حق کار شما به وضعیت شما بستگی دارد. اگر کسی برای دادن کار از شما پول خواست، مراقب باشید. Acas دربارهٔ دستمزد و حقوق کار مشاورهٔ رایگان می‌دهد."],
+["کمک رایگان و کلاس انگلیسی","Citizens Advice مشاورهٔ رایگان می‌دهد. از کالج یا شورای محلی خود دربارهٔ کلاس‌های ارزان زبان انگلیسی (ESOL) بپرسید."]],
+p:[["بستهٔ آفلاین","راهنمای کامل به‌صورت PDF قابل دانلود به هر زبان."],
+["فهرست کارها و یادآورها","فهرست ماه اول و سال اول همراه با یادآوری مهلت‌ها."],
+["دستیار نامه‌ها","توضیح نامه‌های رسمی به زبان شما."],
+["الگوهای قابل چاپ","مثلاً درخواست ثبت‌نام نزد پزشک یا افتتاح حساب بانکی."]],
+lt:["ابتدا از نامهٔ خود عکس بگیرید یا عکس را انتخاب کنید.", "این نامه را توضیح بده", "در حال خواندن نامهٔ شما. ممکن است چند ثانیه طول بکشد…", "این برنامه عکس شما را ذخیره نمی‌کند، اما یک ارائه‌دهندهٔ هوش مصنوعی برای توضیح دادن آن را پردازش می‌کند. نامه را به کسی که در ازای پول وعدهٔ «حل پروندهٔ شما» می‌دهد نشان ندهید. این اطلاعات عمومی است، نه مشاورهٔ حقوقی.", "متأسفیم، مشکلی پیش آمد. دوباره تلاش کنید."],ban:"راهنمای مستقل. وب‌سایت رسمی دولت نیست.",unlock:"باز کردن (آزمایشی)",open:"باز شد",note:"این نسخهٔ آزمایشی است و پرداخت واقعی نمی‌پذیرد.",
+foot:"اطلاعات عمومی، نه مشاورهٔ حقوقی. جزئیات به‌روز را در GOV.UK بررسی کنید. پیش از اتکا به ترجمه، باید توسط زبان‌مادری‌ها بازبینی شود."}
+};
+var X={"en": {"m": ["Start here", "Emergency and help", "Scan a letter", "Free help elsewhere", "Share and install", "Premium (demo)"], "back": "Back", "h": "Emergency: call 999. Health advice that is not an emergency: call 111. For free legal and housing help, see Free help elsewhere.", "sc": ["Take or choose a photo of your letter.", "Read my letter", "Reading on your phone. Nothing is uploaded. First use may take a minute…", "Dates and deadlines found:", "Words to know:", "Nothing matched. The text is shown below. Ask Citizens Advice or a regulated adviser.", "This reads text on your phone and finds dates and key words. It cannot give advice. For your case, get free or regulated help quickly."], "tm": ["Refusal: the answer was no. Get free or regulated advice quickly. Appeal time can be short.", "Appeal: a way to challenge a decision. Deadlines are short.", "Bail or reporting: you may have to report on set dates. Missing one can cause problems.", "Interview: you must attend. Keep the date and place safe.", "A deadline: count from the date on the letter and act early."], "ins": ["Newcomer Guide: free UK help in 5 languages. Open: [LINK]", "Android: open the link in Chrome. Tap the 3 dots, then Install app. Done.", "iPhone: open the link in Safari. Tap Share, then Add to Home Screen, then Add. Done.", "It works offline. Not an official government site."], "copy": "Copy", "share": "Share"}, "ar": {"m": ["ابدأ هنا", "الطوارئ والمساعدة", "امسح رسالة", "مساعدة مجانية أخرى", "المشاركة والتثبيت", "مميز (تجريبي)"], "back": "رجوع", "h": "الطوارئ: اتصل بالرقم 999. نصيحة صحية غير عاجلة: اتصل بالرقم 111. للمساعدة القانونية والسكنية المجانية، انظر «مساعدة مجانية أخرى».", "sc": ["التقط صورة لرسالتك أو اخترها.", "اقرأ رسالتي", "تتم القراءة على هاتفك. لا يُرفع شيء. قد يستغرق أول استخدام دقيقة…", "التواريخ والمهل التي وُجدت:", "كلمات يجب معرفتها:", "لم يُطابق شيء. النص معروض أدناه. اسأل Citizens Advice أو مستشاراً مسجّلاً.", "يقرأ هذا النص على هاتفك ويجد التواريخ والكلمات المهمة. لا يقدم نصيحة. لقضيتك، احصل بسرعة على مساعدة مجانية أو من مستشار مسجّل."], "tm": ["رفض: كان الجواب لا. احصل على مشورة مجانية أو من مستشار مسجّل بسرعة. قد تكون مهلة الاستئناف قصيرة.", "استئناف: طريقة للطعن في قرار. المهل قصيرة.", "كفالة أو إبلاغ: قد يُطلب منك الحضور في مواعيد محددة. التغيب قد يسبب مشاكل.", "مقابلة: يجب الحضور. احتفظ بالتاريخ والمكان.", "موعد نهائي: احسب من تاريخ الرسالة وتصرّف مبكراً."], "ins": ["دليل الوافد الجديد: مساعدة مجانية في المملكة المتحدة بخمس لغات. افتح: [LINK]", "أندرويد: افتح الرابط في Chrome. اضغط على النقاط الثلاث ثم «تثبيت التطبيق». تم.", "آيفون: افتح الرابط في Safari. اضغط «مشاركة» ثم «إضافة إلى الشاشة الرئيسية» ثم «إضافة». تم.", "يعمل دون إنترنت. ليس موقعاً حكومياً رسمياً."], "copy": "نسخ", "share": "مشاركة"}, "uk": {"m": ["Почніть тут", "Екстрена допомога", "Скануйте лист", "Інша безкоштовна допомога", "Поділитися та встановити", "Преміум (демо)"], "back": "Назад", "h": "Екстрена ситуація: 999. Медична порада без екстреності: 111. Безкоштовну юридичну й житлову допомогу дивіться в розділі «Інша безкоштовна допомога».", "sc": ["Сфотографуйте лист або виберіть фото.", "Прочитати мій лист", "Читання на вашому телефоні. Нічого не завантажується. Перший раз може тривати хвилину…", "Знайдені дати й строки:", "Слова, які варто знати:", "Збігів немає. Текст показано нижче. Запитайте Citizens Advice або зареєстрованого консультанта.", "Це читає текст на вашому телефоні та знаходить дати й ключові слова. Порад воно не дає. Щодо вашої справи швидко зверніться по безкоштовну або зареєстровану допомогу."], "tm": ["Відмова: відповідь «ні». Швидко зверніться по безкоштовну або зареєстровану допомогу. Час на апеляцію може бути коротким.", "Апеляція: спосіб оскаржити рішення. Строки короткі.", "Застава або відмітки: можливо, потрібно з’являтися у визначені дати. Пропуск може спричинити проблеми.", "Співбесіда: потрібно прийти. Збережіть дату й місце.", "Строк: рахуйте від дати на листі й дійте раніше."], "ins": ["Путівник для новоприбулих: безкоштовна допомога у Великій Британії п’ятьма мовами. Відкрийте: [LINK]", "Android: відкрийте посилання в Chrome. Натисніть три крапки, потім «Установити застосунок». Готово.", "iPhone: відкрийте посилання в Safari. Натисніть «Поділитися», потім «На початковий екран», потім «Додати». Готово.", "Працює офлайн. Це не офіційний урядовий сайт."], "copy": "Копіювати", "share": "Поділитися"}, "es": {"m": ["Empiece aquí", "Emergencias y ayuda", "Escanear una carta", "Más ayuda gratuita", "Compartir e instalar", "Premium (demo)"], "back": "Volver", "h": "Emergencia: llame al 999. Consejo médico no urgente: 111. Para ayuda legal y de vivienda gratuita, vea «Más ayuda gratuita».", "sc": ["Haga o elija una foto de su carta.", "Leer mi carta", "Leyendo en su teléfono. No se sube nada. El primer uso puede tardar un minuto…", "Fechas y plazos encontrados:", "Palabras que conviene conocer:", "Sin coincidencias. El texto aparece abajo. Consulte a Citizens Advice o a un asesor regulado.", "Esto lee el texto en su teléfono y encuentra fechas y palabras clave. No da consejos. Para su caso, busque ayuda gratuita o regulada pronto."], "tm": ["Denegación: la respuesta fue no. Busque asesoramiento gratuito o regulado pronto. El plazo para apelar puede ser corto.", "Apelación: una forma de impugnar una decisión. Los plazos son cortos.", "Libertad bajo fianza o presentación: puede tener que presentarse en fechas fijas. Faltar puede causar problemas.", "Entrevista: debe asistir. Guarde la fecha y el lugar.", "Un plazo: cuente desde la fecha de la carta y actúe pronto."], "ins": ["Guía para recién llegados: ayuda gratuita en el Reino Unido en 5 idiomas. Abra: [LINK]", "Android: abra el enlace en Chrome. Toque los tres puntos y luego Instalar aplicación. Listo.", "iPhone: abra el enlace en Safari. Toque Compartir, luego Añadir a pantalla de inicio y Añadir. Listo.", "Funciona sin conexión. No es un sitio oficial del gobierno."], "copy": "Copiar", "share": "Compartir"}, "fa": {"m": ["از اینجا شروع کنید", "اضطراری و کمک", "اسکن نامه", "کمک رایگان دیگر", "اشتراک‌گذاری و نصب", "ویژه (آزمایشی)"], "back": "بازگشت", "h": "اضطراری: ۹۹۹. مشاورهٔ پزشکی غیراضطراری: ۱۱۱. برای کمک حقوقی و مسکن رایگان، «کمک رایگان دیگر» را ببینید.", "sc": ["از نامهٔ خود عکس بگیرید یا عکس را انتخاب کنید.", "نامهٔ مرا بخوان", "در حال خواندن روی گوشی شما. چیزی بارگذاری نمی‌شود. بار اول ممکن است یک دقیقه طول بکشد…", "تاریخ‌ها و مهلت‌های پیدا شده:", "واژه‌هایی که باید بدانید:", "موردی پیدا نشد. متن در زیر نشان داده شده است. از Citizens Advice یا یک مشاور ثبت‌شده بپرسید.", "این ابزار متن را روی گوشی شما می‌خواند و تاریخ‌ها و واژه‌های کلیدی را پیدا می‌کند. مشاوره نمی‌دهد. برای پروندهٔ خود سریعاً کمک رایگان یا ثبت‌شده بگیرید."], "tm": ["رد درخواست: پاسخ منفی بوده است. سریعاً مشاورهٔ رایگان یا ثبت‌شده بگیرید. مهلت تجدیدنظر ممکن است کوتاه باشد.", "تجدیدنظر: راهی برای اعتراض به یک تصمیم. مهلت‌ها کوتاه است.", "وثیقه یا گزارش‌دهی: ممکن است باید در تاریخ‌های مشخص حاضر شوید. غیبت می‌تواند مشکل ایجاد کند.", "مصاحبه: باید حاضر شوید. تاریخ و مکان را نگه دارید.", "مهلت: از تاریخ نامه بشمارید و زودتر اقدام کنید."], "ins": ["راهنمای تازه‌واردان: کمک رایگان در بریتانیا به پنج زبان. باز کنید: [LINK]", "اندروید: پیوند را در Chrome باز کنید. سه نقطه را بزنید، سپس «نصب برنامه». تمام.", "آیفون: پیوند را در Safari باز کنید. «اشتراک‌گذاری» را بزنید، سپس «افزودن به صفحهٔ اصلی» و «افزودن». تمام.", "بدون اینترنت هم کار می‌کند. وب‌سایت رسمی دولت نیست."], "copy": "رونوشت", "share": "اشتراک‌گذاری"}}
+;var CONTACT="your-email@example.com";
+var cur="en",unlocked={},V=["guide","help","scan","links","install","premium","support","about"],IC=["📖","🆘","📷","🔗","📲","⭐","💜","ℹ️"],SP={en:"en-GB",ar:"ar",uk:"uk-UA",es:"es-ES",fa:"fa-IR"};
+var X2={"en": {"m2": ["Feeling low or unsafe", "About 789"], "listen": "Listen", "sup": "If you are in danger, call 999. If you feel unsafe, very low, or want to hurt yourself, you are not alone. In England call 111 and choose the mental health option. Samaritans: 116 123, free, 24 hours. Shout: text SHOUT to 85258, free, 24 hours. Anyone can call for you.", "ab": ["789 is a small independent service that helps people who are new to the UK, and adults going through a hard time, find clear and free information. It is not part of, or funded by, the UK government, the NHS or the Home Office.", "We give general information only, not legal or medical advice. We never ask for your name, status or documents, we show no adverts, and we do not sell data. Our aim is to have every translation and guide checked by native speakers and regulated advisers. Contact: [CONTACT]"]}, "ar": {"m2": ["أشعر بالحزن أو عدم الأمان", "عن 789"], "listen": "استماع", "sup": "إذا كنت في خطر فاتصل بالرقم 999. إذا شعرت بعدم الأمان أو بحزن شديد أو برغبة في إيذاء نفسك فأنت لست وحدك. في إنجلترا اتصل بالرقم 111 واختر خيار الصحة النفسية. Samaritans: 116 123 مجاناً على مدار الساعة. Shout: أرسل رسالة SHOUT إلى 85258 مجاناً على مدار الساعة. يمكن لأي شخص الاتصال نيابة عنك.", "ab": ["789 خدمة مستقلة صغيرة تساعد القادمين الجدد إلى المملكة المتحدة والبالغين الذين يمرون بوقت صعب على إيجاد معلومات واضحة ومجانية. ليست جزءاً من الحكومة البريطانية أو هيئة الخدمات الصحية أو وزارة الداخلية ولا تمولها.", "نقدم معلومات عامة فقط، لا نصيحة قانونية أو طبية. لا نطلب اسمك أو وضعك أو وثائقك، ولا نعرض إعلانات، ولا نبيع البيانات. هدفنا أن يراجع متحدثون أصليون ومستشارون مسجّلون كل ترجمة ودليل. للتواصل: [CONTACT]"]}, "uk": {"m2": ["Мені погано або небезпечно", "Про 789"], "listen": "Слухати", "sup": "Якщо ви в небезпеці, телефонуйте 999. Якщо ви почуваєтеся в небезпеці, дуже пригнічено або хочете завдати собі шкоди, ви не самі. В Англії телефонуйте 111 і оберіть психічне здоров’я. Samaritans: 116 123, безкоштовно, цілодобово. Shout: надішліть SHOUT на 85258, безкоштовно, цілодобово. Будь-хто може зателефонувати за вас.", "ab": ["789 — невелика незалежна служба, що допомагає новоприбулим у Великій Британії та дорослим у важкий час знайти зрозумілу безкоштовну інформацію. Вона не є частиною уряду Великої Британії, NHS чи Home Office і не фінансується ними.", "Ми надаємо лише загальну інформацію, а не юридичні чи медичні поради. Ми не просимо ваше ім’я, статус чи документи, не показуємо реклами й не продаємо дані. Наша мета — щоб носії мови та зареєстровані консультанти перевіряли кожен переклад і посібник. Контакт: [CONTACT]"]}, "es": {"m2": ["Me siento mal o inseguro", "Acerca de 789"], "listen": "Escuchar", "sup": "Si está en peligro, llame al 999. Si se siente inseguro, muy decaído o quiere hacerse daño, no está solo. En Inglaterra llame al 111 y elija la opción de salud mental. Samaritans: 116 123, gratis, las 24 horas. Shout: envíe SHOUT al 85258, gratis, las 24 horas. Cualquiera puede llamar por usted.", "ab": ["789 es un pequeño servicio independiente que ayuda a quienes son nuevos en el Reino Unido, y a adultos que atraviesan un momento difícil, a encontrar información clara y gratuita. No forma parte del gobierno británico, del NHS ni del Home Office, ni está financiado por ellos.", "Damos solo información general, no asesoramiento legal ni médico. Nunca pedimos su nombre, estatus ni documentos, no mostramos anuncios y no vendemos datos. Nuestro objetivo es que hablantes nativos y asesores regulados revisen cada traducción y guía. Contacto: [CONTACT]"]}, "fa": {"m2": ["احساس ناراحتی یا ناامنی", "دربارهٔ ۷۸۹"], "listen": "گوش دادن", "sup": "اگر در خطر هستید با ۹۹۹ تماس بگیرید. اگر احساس ناامنی یا ناراحتی شدید می‌کنید یا می‌خواهید به خود آسیب بزنید، تنها نیستید. در انگلستان با ۱۱۱ تماس بگیرید و گزینهٔ سلامت روان را انتخاب کنید. Samaritans: 116 123، رایگان، شبانه‌روزی. Shout: پیامک SHOUT را به 85258 بفرستید، رایگان، شبانه‌روزی. هر کسی می‌تواند از طرف شما تماس بگیرد.", "ab": ["۷۸۹ یک خدمت مستقل کوچک است که به تازه‌واردان به بریتانیا و بزرگسالانی که روزهای سختی را می‌گذرانند کمک می‌کند اطلاعات روشن و رایگان پیدا کنند. این خدمت بخشی از دولت بریتانیا، NHS یا وزارت کشور نیست و از آنها بودجه نمی‌گیرد.", "ما فقط اطلاعات عمومی می‌دهیم، نه مشاورهٔ حقوقی یا پزشکی. نام، وضعیت یا مدارک شما را نمی‌خواهیم، تبلیغ نشان نمی‌دهیم و داده نمی‌فروشیم. هدف ما این است که زبان‌مادری‌ها و مشاوران ثبت‌شده هر ترجمه و راهنما را بررسی کنند. تماس: [CONTACT]"]}};
+for(var k in X)for(var j in X[k])L[k][j]=X[k][j];
+for(var k in X2){for(var j in X2[k])L[k][j]=X2[k][j];L[k].m=L[k].m.concat(X2[k].m2)}
+function speak(x){if(!window.speechSynthesis)return;speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(x);u.lang=SP[cur];speechSynthesis.speak(u)}
+var LINKS=[["Citizens Advice","https://www.citizensadvice.org.uk"],["NHS","https://www.nhs.uk"],["Shelter (housing)","https://www.shelter.org.uk"],["Acas (work)","https://www.acas.org.uk"],["Praxis: A Migrant’s Guide","https://praxis.org.uk/migrants-guide"],["GOV.UK","https://www.gov.uk"]];
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+function card(h,p,badge,cls){var c=el("div","card"+(cls?" "+cls:""));if(badge)c.appendChild(el("span","badge",badge));c.appendChild(el("h2",null,h));c.appendChild(el("p",null,p));return c}
+function scanUI(c,t){
+var w=document.createElement("div");w.className="scan";
+w.innerHTML='<p class="np">'+esc(t.lt[3])+'</p><input type="file" accept="image/*" capture="environment"><button type="button">'+esc(t.lt[1])+'</button><div class="out" aria-live="polite"></div>';
+c.appendChild(w);
+var f=w.querySelector("input"),b=w.querySelector("button"),o=w.querySelector(".out");
+b.onclick=function(){
+var file=f.files[0];
+if(!file){o.textContent=t.lt[0];return}
+o.textContent=t.lt[2];
+var im=new Image(),u=URL.createObjectURL(file);
+im.onload=function(){
+var r=Math.min(1,1600/Math.max(im.width,im.height)),cv=document.createElement("canvas");
+cv.width=Math.round(im.width*r);cv.height=Math.round(im.height*r);
+cv.getContext("2d").drawImage(im,0,0,cv.width,cv.height);URL.revokeObjectURL(u);
+fetch("/.netlify/functions/explain-letter",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({image:cv.toDataURL("image/jpeg",0.8).split(",")[1],lang:cur})})
+.then(function(x){return x.json()}).then(function(d){o.textContent=d.text||t.lt[4]}).catch(function(){o.textContent=t.lt[4]});
+};
+im.onerror=function(){o.textContent=t.lt[4]};
+im.src=u;
+};
+}
+
+function loadT(cb){if(window.Tesseract)return cb();var s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js";s.onload=function(){cb()};s.onerror=function(){cb(1)};document.head.appendChild(s)}
+var DR=/\b\d{1,2}(?:st|nd|rd|th)?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s+\d{4}\b|\b\d{1,2}[\/.-]\d{1,2}[\/.-]\d{2,4}\b|\bwithin\s+\d+\s+(?:working\s+)?days?\b/gi;
+var TR=[/refus/i,/appeal/i,/\bbail\b|\breport(?:ing)?\b/i,/interview/i,/within\s+\d+\s+(?:working\s+)?days?|deadline/i];
+function scanFree(root,t){
+var c=el("div","card");c.appendChild(el("p","np",t.sc[6]));
+var f=el("input");f.type="file";f.accept="image/*";f.setAttribute("capture","environment");c.appendChild(f);
+var b=el("button",null,t.sc[1]);b.type="button";c.appendChild(b);var o=el("div","out");o.setAttribute("aria-live","polite");c.appendChild(o);root.appendChild(c);
+b.onclick=function(){var file=f.files[0];if(!file){o.textContent=t.sc[0];return}
+o.textContent=t.sc[2];
+loadT(function(err){if(err||!window.Tesseract){o.textContent=t.lt[4];return}
+Tesseract.recognize(file,"eng").then(function(r){
+var tx=r.data.text||"",ds=(tx.match(DR)||[]).filter(function(v,i,a){return a.indexOf(v)===i}),hits=[];
+TR.forEach(function(re,i){if(re.test(tx))hits.push(t.tm[i])});
+o.textContent="";
+if(!ds.length&&!hits.length)o.appendChild(el("p",null,t.sc[5]));
+if(ds.length){o.appendChild(el("h3",null,t.sc[3]));ds.forEach(function(d){o.appendChild(el("p",null,"• "+d))})}
+if(hits.length){o.appendChild(el("h3",null,t.sc[4]));hits.forEach(function(h){o.appendChild(el("p",null,"• "+h))})}
+var dt=el("details");dt.appendChild(el("summary",null,"Text"));dt.appendChild(el("p",null,tx));o.appendChild(dt);
+}).catch(function(){o.textContent=t.lt[4]})})}}
+function render(){
+var t=L[cur],v=location.hash.slice(1),i=V.indexOf(v),root=document.getElementById("view");
+document.documentElement.lang=cur;document.documentElement.dir=t.d;
+document.getElementById("title").textContent=t.title;document.getElementById("tag").textContent=t.tag;
+document.getElementById("ban").textContent=t.ban;document.getElementById("foot").textContent=t.foot;
+var lb=document.getElementById("langs");lb.innerHTML="";
+Object.keys(L).forEach(function(k){var b=el("button",null,L[k].n);b.setAttribute("aria-pressed",k===cur);b.onclick=function(){cur=k;render()};lb.appendChild(b)});
+root.innerHTML="";
+if(i<0){var g=el("div","grid");V.forEach(function(n,j){var a=el("a","tile");a.href="#"+n;a.appendChild(el("span",null,IC[j]));a.appendChild(el("div",null,t.m[j]));g.appendChild(a)});root.appendChild(g);return}
+var bk=el("a","back","‹ "+t.back);bk.href="#";root.appendChild(bk);root.appendChild(el("h2","vt",t.m[i]));
+if(v==="guide")t.f.forEach(function(x){var c=card(x[0],x[1],t.free);if(window.speechSynthesis){var lb2=el("button",null,"🔊 "+t.listen);lb2.type="button";lb2.onclick=function(){speak(x[0]+". "+x[1])};c.appendChild(lb2)}root.appendChild(c)});
+if(v==="help"){var c=el("div","card");c.appendChild(el("p",null,t.h));["999","111"].forEach(function(n){var a=el("a","call",n);a.href="tel:"+n;c.appendChild(a)});root.appendChild(c)}
+if(v==="scan")scanFree(root,t);
+if(v==="support"){var cs=el("div","card");cs.appendChild(el("p",null,t.sup));[["999","tel:999"],["111","tel:111"],["Samaritans 116 123","tel:116123"],["SHOUT 85258","sms:85258?&body=SHOUT"]].forEach(function(z){var a=el("a","call",z[0]);a.href=z[1];cs.appendChild(a)});root.appendChild(cs)}
+if(v==="about"){t.ab.forEach(function(p){var ca=el("div","card");ca.appendChild(el("p",null,p.replace("[CONTACT]",CONTACT)));root.appendChild(ca)})}
+if(v==="links"){var c2=el("div","card");LINKS.forEach(function(l){var p=el("p");var a=el("a","ext",l[0]);a.href=l[1];a.target="_blank";a.rel="noopener";p.appendChild(a);c2.appendChild(p)});root.appendChild(c2)}
+if(v==="install"){var url=location.href.split("#")[0],all=[];t.ins.forEach(function(m){var s=m.replace("[LINK]",url);all.push(s);var c=el("div","card");c.appendChild(el("p",null,s));var b=el("button",null,t.copy);b.type="button";b.onclick=function(){if(navigator.clipboard)navigator.clipboard.writeText(s)};c.appendChild(b);root.appendChild(c)});
+if(navigator.share){var sb=el("button","act",t.share);sb.type="button";sb.onclick=function(){navigator.share({text:all.join("\n")}).catch(function(){})};root.appendChild(sb)}}
+if(v==="premium"){t.p.forEach(function(x,j){var c=card(x[0],x[1],t.prem,"prem"+(unlocked[j]?" open":""));var b=el("button","unl",unlocked[j]?t.open:t.unlock);b.type="button";b.onclick=function(){unlocked[j]=true;render()};c.appendChild(b);if(unlocked[j]&&j===2)scanUI(c,t);root.appendChild(c)});root.appendChild(el("p","np",t.note))}
+}
+window.addEventListener("hashchange",render);
+render();
+try{if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(function(){})}catch(e){}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+NEWCOMER GUIDE: INSTALL MESSAGES
+Replace [LINK] with your website link. Copy and send by SMS, WhatsApp or Telegram.
+
+=== ENGLISH ===
+Newcomer Guide: free UK help in 5 languages. Open: [LINK]
+
+Android: open the link in Chrome. Tap the 3 dots, then Install app. Done.
+
+iPhone: open the link in Safari. Tap Share, then Add to Home Screen, then Add. Done.
+
+It works offline. Not an official government site.
+
+=== ARABIC ===
+دليل الوافد الجديد: مساعدة مجانية في المملكة المتحدة بخمس لغات. افتح: [LINK]
+
+أندرويد: افتح الرابط في Chrome. اضغط على النقاط الثلاث ثم «تثبيت التطبيق». تم.
+
+آيفون: افتح الرابط في Safari. اضغط «مشاركة» ثم «إضافة إلى الشاشة الرئيسية» ثم «إضافة». تم.
+
+يعمل دون إنترنت. ليس موقعاً حكومياً رسمياً.
+
+=== UKRAINIAN ===
+Путівник для новоприбулих: безкоштовна допомога у Великій Британії п’ятьма мовами. Відкрийте: [LINK]
+
+Android: відкрийте посилання в Chrome. Натисніть три крапки, потім «Установити застосунок». Готово.
+
+iPhone: відкрийте посилання в Safari. Натисніть «Поділитися», потім «На початковий екран», потім «Додати». Готово.
+
+Працює офлайн. Це не офіційний урядовий сайт.
+
+=== SPANISH ===
+Guía para recién llegados: ayuda gratuita en el Reino Unido en 5 idiomas. Abra: [LINK]
+
+Android: abra el enlace en Chrome. Toque los tres puntos y luego Instalar aplicación. Listo.
+
+iPhone: abra el enlace en Safari. Toque Compartir, luego Añadir a pantalla de inicio y Añadir. Listo.
+
+Funciona sin conexión. No es un sitio oficial del gobierno.
+
+=== FARSI ===
+راهنمای تازه‌واردان: کمک رایگان در بریتانیا به پنج زبان. باز کنید: [LINK]
+
+اندروید: پیوند را در Chrome باز کنید. سه نقطه را بزنید، سپس «نصب برنامه». تمام.
+
+آیفون: پیوند را در Safari باز کنید. «اشتراک‌گذاری» را بزنید، سپس «افزودن به صفحهٔ اصلی» و «افزودن». تمام.
+
+بدون اینترنت هم کار می‌کند. وب‌سایت رسمی دولت نیست.
